@@ -33,6 +33,7 @@
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (pkgs.lib.getName pkg) [
       "discord"
+      "claude-code"
     ];
 
   nix.gc = {
@@ -82,6 +83,8 @@
   programs.niri.enable = true;
   nixpkgs.overlays = [ inputs.niri.overlays.niri ];
   programs.niri.package = pkgs.niri-unstable;
+
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   # --- Display manager ---
   services.displayManager.ly.enable = true;
