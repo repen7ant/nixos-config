@@ -63,8 +63,6 @@ layout {
 spawn-at-startup "noctalia-shell"
 
 environment {
-    GTK_THEME "Adwaita:dark"
-    ADW_DEBUG_COLOR_SCHEME "prefer-dark"
     XCURSOR_THEME "Bibata-Modern-Classic"
     XCURSOR_SIZE "20"
     GTK_CURSOR_THEME "Bibata-Modern-Classic"

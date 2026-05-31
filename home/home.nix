@@ -15,6 +15,7 @@
     ./git.nix
     ./packages.nix
     ./apps.nix
+    ./theme.nix
   ];
 
   home.username = user;
