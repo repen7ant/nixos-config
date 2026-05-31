@@ -3,7 +3,9 @@
 {
   programs.git = {
     enable = true;
-    userName = "repen7ant";
-    userEmail = "ilyarepentant@icloud.com";
+    settings.user = {
+      name = "repen7ant";
+      email = "ilyarepentant@icloud.com";
+    };
   };
 }
