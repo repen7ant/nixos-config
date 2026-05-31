@@ -6,7 +6,7 @@
     lua-language-server                # lua_ls
     basedpyright                       # basedpyright
     clang-tools                        # clangd
-    intelephense                       # intelephense (PHP)
+    phpactor                           # phpactor (PHP LSP, open-source)
     ruff                               # ruff (LSP + formatter)
     vscode-langservers-extracted       # jsonls + html
     sqls                               # sqls (Go SQL LSP)

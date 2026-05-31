@@ -177,7 +177,7 @@ return {
           '--fallback-style=llvm',
         },
       },
-      intelephense = {},
+      phpactor = {},
       ruff = {},
       jsonls = {},
       sqls = {},
