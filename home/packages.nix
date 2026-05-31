@@ -18,6 +18,7 @@
     fastfetch
     btop
 
+    kitty
     fuzzel
     playerctl
     brightnessctl
