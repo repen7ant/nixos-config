@@ -10,10 +10,9 @@
     ruff                               # ruff (LSP + formatter)
     vscode-langservers-extracted       # jsonls + html
     sqls                               # sqls (Go SQL LSP)
-    terraform-ls                       # terraformls
     yaml-language-server               # yamlls
     bash-language-server               # bashls
-    dockerfile-language-server-nodejs  # dockerls
+    dockerfile-language-server         # dockerls
     docker-compose-language-service    # docker_compose_language_service
     nil                                # nix LSP (nil_ls)
 
@@ -23,7 +22,6 @@
     eslint_d                           # js/ts lint
     shfmt                              # shell format
     checkmake                          # Makefile lint
-    terraform                          # `terraform fmt`
 
     # --- treesitter runtime build deps ---
     gcc                                # compiles parsers (auto_install)

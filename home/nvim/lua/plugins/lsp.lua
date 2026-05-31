@@ -181,7 +181,6 @@ return {
       ruff = {},
       jsonls = {},
       sqls = {},
-      terraformls = {},
       nil_ls = {},
       yamlls = {},
       bashls = {},
