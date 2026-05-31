@@ -10,6 +10,7 @@
     ./fastfetch
     ./starship
     ./nvim
+    ./nvim-tools.nix
     ./bash.nix
     ./git.nix
     ./packages.nix

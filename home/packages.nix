@@ -7,7 +7,6 @@
     wget
     ripgrep
     tree
-    nil
     wl-clipboard
 
     starship
