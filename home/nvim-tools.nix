@@ -26,5 +26,7 @@
     # --- treesitter runtime build deps ---
     gcc                                # compiles parsers (auto_install)
     tree-sitter                        # CLI needed by nvim-treesitter `main` branch
+
+    gnumake
   ];
 }
