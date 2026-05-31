@@ -13,7 +13,7 @@ Repo lives at `~/git/nixos-config`. Active host: `thinkpad`.
 Add a package = edit config:
 
 ```nix
-# home/apps.nix or home/packages.nix
+# home/packages.nix
 home.packages = with pkgs; [ foo bar ];
 ```
 
@@ -29,7 +29,7 @@ Remove = delete the line + rebuild. No orphaned deps — GC cleans them.
 
 **Where things go:**
 - system (services, hardware) → `hosts/`
-- user software → `home/apps.nix` / `home/packages.nix`
+- user software → `home/packages.nix`
 
 ---
 
@@ -153,7 +153,7 @@ Or the web: **search.nixos.org** — packages and **Options** (e.g. search
 ## Typical day
 
 ```bash
-# install a program: edit apps.nix, then
+# install a program: edit packages.nix, then
 cd ~/git/nixos-config && git add -A && sudo nixos-rebuild switch --flake .#thinkpad
 
 # work on a project
