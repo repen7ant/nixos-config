@@ -43,6 +43,8 @@
   # --- Networking ---
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
+  # IPv6 is broken in the VM's QEMU NAT
+  networking.enableIPv6 = false;
 
   # --- SSH ---
   services.openssh = {
