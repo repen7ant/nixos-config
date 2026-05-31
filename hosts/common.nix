@@ -3,6 +3,7 @@
 {
   imports = [
     inputs.niri.nixosModules.niri
+    ./services.nix
   ];
 
   # --- Boot ---
@@ -28,6 +29,11 @@
     auto-optimise-store = true;
   };
   niri-flake.cache.enable = false;
+
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (pkgs.lib.getName pkg) [
+      "discord"
+    ];
 
   nix.gc = {
     automatic = true;
@@ -91,7 +97,7 @@
   # --- User ---
   users.users.${user} = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "wheel" "networkmanager" "docker" ];
     shell = pkgs.bash;
   };
 }
