@@ -85,6 +85,10 @@
   programs.niri.package = pkgs.niri-unstable;
 
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  xdg.portal.config.common = {
+    default = [ "gnome" "gtk" ];
+    "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
+  };
 
   # --- Display manager ---
   services.displayManager.ly.enable = true;
