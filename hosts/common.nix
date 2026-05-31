@@ -37,6 +37,16 @@
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
+  # --- SSH ---
+  services.openssh = {
+    enable = true;
+    settings = {
+      PermitRootLogin = "no";
+      # change later to public key
+      PasswordAuthentication = true;
+    };
+  };
+
   # --- Time / locale ---
   time.timeZone = "Asia/Almaty";
 
