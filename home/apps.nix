@@ -8,7 +8,7 @@
     v2raya
     mpv
     libreoffice-still
-    gpu-screen-recorder-ui
+    gpu-screen-recorder-gtk
     dbeaver-bin
 
     # helium (not in nixpkgs)
