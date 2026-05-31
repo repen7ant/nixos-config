@@ -72,6 +72,7 @@
 
   # --- Compositor ---
   programs.niri.enable = true;
+  programs.niri.package = pkgs.niri-unstable;
 
   # --- Display manager ---
   services.displayManager.ly.enable = true;
