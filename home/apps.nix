@@ -10,11 +10,13 @@
     libreoffice-still
     gpu-screen-recorder-gtk
     dbeaver-bin
+    unzip
 
     # helium (not in nixpkgs)
     # tor-browser
     # telegram-desktop
     # discord
     # qbittorrent
+    # feishin
   ];
 }
