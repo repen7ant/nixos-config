@@ -4,7 +4,12 @@
   imports = [
     ./niri
     ./noctalia.nix
-    ./kitty.nix
+    ./kitty
+    ./fuzzel
+    ./yazi
+    ./fastfetch
+    ./starship
+    ./nvim
     ./bash.nix
     ./git.nix
     ./packages.nix

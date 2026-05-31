@@ -1,19 +1,71 @@
-{ configName, dotfiles, ... }:
+{ ... }:
 
 {
   programs.bash = {
     enable = true;
 
-    shellAliases = {
-      sw = "nh os switch -H ${configName}";
-      upd = "nh os switch -H ${configName} --update";
-      nrs = "sudo nixos-rebuild switch --flake ${dotfiles}#${configName}";
-
-      ".." = "cd ..";
-    };
-
     initExtra = ''
-      export PS1="\[\e[38;5;75m\]\u@\h \[\e[38;5;113m\]\w \[\e[38;5;189m\]\$ \[\e[0m\]"
+      [[ $- != *i* ]] && return
+
+      alias ls='ls --color=auto'
+      alias grep='grep --color=auto'
+
+      export EDITOR=nvim
+      export PATH="$PATH:/home/ilya/.local/bin:$HOME/scripts"
+      export PATH=~/.npm-global/bin:$PATH
+
+      eval "$(starship init bash)"
+      eval "$(zoxide init bash)"
+
+      if [ -z "$SSH_AUTH_SOCK" ]; then
+          eval "$(ssh-agent -s 2>/dev/null)" >/dev/null 2>&1
+          ssh-add ~/.ssh/id_ed25519 2>/dev/null
+      fi
+
+      fastfetch
+
+      function y() {
+          local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+          yazi "$@" --cwd-file="$tmp"
+          if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+              builtin cd -- "$cwd"
+          fi
+          rm -f -- "$tmp"
+      }
+
+      function proj {
+          local git_dir="$HOME/git"
+          local selected
+          selected=$(ls "$git_dir" | fzf --preview "ls $git_dir/{}")
+          [ -n "$selected" ] && y "$git_dir/$selected"
+      }
+
+      function wifi {
+          nmcli device wifi rescan 2>/dev/null
+          sleep 2
+          local list
+          list=$(nmcli -f SSID,SIGNAL,SECURITY device wifi list | tail -n +2)
+          local selected_line
+          selected_line=$(echo "$list" | fzf --prompt="wifi> ")
+          [ -z "$selected_line" ] && return 1
+          local line_num
+          line_num=$(echo "$list" | grep -nF "$selected_line" | head -1 | cut -d: -f1)
+          local ssid
+          ssid=$(nmcli -t -f SSID device wifi list | tail -n +1 | sed -n "''${line_num}p")
+          nmcli connection up "$ssid" 2>/dev/null || echo "can't connect to $ssid"
+      }
+
+      function dc() {
+          local args=()
+          if [ -f "docker-compose.dev.yaml" ]; then
+              args=(-f docker-compose.dev.yaml)
+          fi
+          docker compose "''${args[@]}" "$@"
+      }
+
+      alias up="dc up -d"
+      alias down="dc down"
+      alias logs="dc logs -f"
     '';
   };
 }

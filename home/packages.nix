@@ -7,7 +7,22 @@
     wget
     ripgrep
     tree
+    nil
     wl-clipboard
-    nil # Nix LSP
+
+    starship
+    zoxide
+    fzf
+    fd
+    yazi
+    fastfetch
+    btop
+
+    fuzzel
+    playerctl
+    brightnessctl
+    cliphist
+
+    bibata-cursors
   ];
 }
