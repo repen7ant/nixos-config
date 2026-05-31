@@ -1,0 +1,72 @@
+{ inputs, user, dotfiles, pkgs, ... }:
+
+{
+  imports = [
+    inputs.niri.nixosModules.niri
+  ];
+
+  # --- Boot ---
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
+
+  # --- Nix / flakes / binary caches ---
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    extra-substituters = [
+      "https://niri.cachix.org"
+      "https://noctalia.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
+      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+    ];
+  };
+  niri-flake.cache.enable = false;
+
+  programs.nh = {
+    enable = true;
+    flake = dotfiles;
+  };
+
+  # --- Networking ---
+  networking.hostName = "nixos";
+  networking.networkmanager.enable = true;
+
+  # --- Time / locale ---
+  time.timeZone = "Asia/Almaty";
+
+  # --- Audio (pipewire) ---
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+
+  # --- Services noctalia relies on ---
+  services.upower.enable = true;
+  services.power-profiles-daemon.enable = true;
+
+  # --- Compositor ---
+  programs.niri.enable = true;
+
+  # --- Display manager ---
+  services.displayManager.ly.enable = true;
+
+  # --- zram swap ---
+  zramSwap.enable = true;
+
+  # --- Fonts ---
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+  ];
+
+  # --- User ---
+  users.users.${user} = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "networkmanager" ];
+    shell = pkgs.bash;
+  };
+}
