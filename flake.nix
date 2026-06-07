@@ -10,6 +10,7 @@
     };
 
     niri.url = "github:sodiboo/niri-flake";
+    helium-nix.url = "github:AlvaroParker/helium-nix";
   };
 
   outputs = { nixpkgs, home-manager, ... }@inputs:
@@ -22,6 +23,7 @@
         inherit system;
         specialArgs = { inherit inputs configName user dotfiles; };
         modules = [
+          { nixpkgs.overlays = [ (final: prev: { helium = inputs.helium-nix.packages.${system}.helium; }) ]; }
           ./hosts/${configName}/configuration.nix
           home-manager.nixosModules.home-manager
           {

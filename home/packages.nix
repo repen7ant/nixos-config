@@ -39,11 +39,12 @@
     dbeaver-bin
     feishin
 
-    # helium # not in nixpkgs
-    # tor-browser
-    # telegram-desktop
-    # discord # proprietary garbage
-    # qbittorrent
+    helium
+    tor-browser
+    telegram-desktop
+    discord # proprietary garbage
+    qbittorrent
+    blender
     # v2raya
   ];
 }
