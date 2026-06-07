@@ -62,7 +62,7 @@
           elif [ -f "docker-compose.dev.yml" ]; then
               args=(-f docker-compose.dev.yml)
           fi
-          docker compose "${args[@]}" "$@"
+          docker compose "''${args[@]}" "$@"
       }
 
       alias up="dc up -d"
