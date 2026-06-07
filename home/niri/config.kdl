@@ -65,7 +65,7 @@ output "DP-1" {
     scale 1.0
 }
 
-spawn-at-startup "swaybg" "-i" "/home/ilya/git/nixos-config/home/walls/night-sky.jpg" "-m" "fill"
+spawn-at-startup "sh" "-c" "swaybg -i \"$(cat ~/.config/wallpaper 2>/dev/null || echo /home/ilya/git/nixos-config/home/walls/night-sky.jpg)\" -m fill"
 spawn-at-startup "qs" "-c" "bar"
 
 environment {
@@ -134,6 +134,7 @@ binds {
     Mod+Q hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Super+E hotkey-overlay-title="Run a file manager: yazi"{ spawn "kitty" "-e" "yazi"; }
+    Mod+Shift+W hotkey-overlay-title="Change wallpaper" { spawn "setwall"; }
 
     Super+Ctrl+L hotkey-overlay-title="Lock the Screen" { spawn-sh "qs -c bar ipc call lock lock"; }
 

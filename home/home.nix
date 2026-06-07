@@ -4,6 +4,7 @@
   imports = [
     ./niri
     ./quickshell.nix
+    ./wallpaper.nix
     ./kitty
     ./fuzzel
     ./yazi
