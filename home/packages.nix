@@ -42,7 +42,6 @@
     helium
     tor-browser
     telegram-desktop
-    discord # proprietary garbage
     qbittorrent
     blender
     # v2raya

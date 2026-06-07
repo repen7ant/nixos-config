@@ -31,7 +31,6 @@
   nixpkgs.config.allowUnfreePredicate = pkg:
     let name = lib.getName pkg;
     in builtins.elem name [
-      "discord"
       "claude-code"
     ] || lib.hasPrefix "nvidia" name;
 
@@ -82,6 +81,8 @@
   nixpkgs.overlays = [ inputs.niri.overlays.niri ];
   programs.niri.package = pkgs.niri-unstable;
 
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   xdg.portal.config.common = {
     default = [ "gnome" "gtk" ];
@@ -93,6 +94,12 @@
 
   # --- zram swap ---
   zramSwap.enable = true;
+
+  # --- Coredumps ---
+  systemd.coredump.settings.Coredump = {
+    Storage = "none";
+    ProcessSizeMax = 0;
+  };
 
   # --- Fonts ---
   fonts.packages = with pkgs; [
