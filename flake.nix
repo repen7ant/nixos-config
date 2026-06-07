@@ -36,8 +36,7 @@
     in {
       nixosConfigurations = {
         thinkpad = mkHost "thinkpad";
-        # there is no desktop folder for now
-        # desktop = mkHost "desktop";
+        desktop = mkHost "desktop";
       };
     };
 }

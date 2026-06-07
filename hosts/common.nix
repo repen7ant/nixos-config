@@ -32,6 +32,7 @@
     builtins.elem (pkgs.lib.getName pkg) [
       "discord"
       "claude-code"
+      "nvidia-x11"
     ];
 
   nix.gc = {
@@ -48,8 +49,6 @@
   # --- Networking ---
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
-  # IPv6 is broken in the VM's QEMU NAT
-  networking.enableIPv6 = false;
 
   # --- SSH ---
   services.openssh = {

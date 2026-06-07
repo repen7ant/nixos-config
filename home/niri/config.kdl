@@ -60,6 +60,11 @@ layout {
     }
 }
 
+output "DP-1" {
+    mode "1920x1080@144.000"
+    scale 1.0
+}
+
 spawn-at-startup "swaybg" "-i" "/home/ilya/git/nixos-config/home/walls/night-sky.jpg" "-m" "fill"
 spawn-at-startup "qs" "-c" "bar"
 
