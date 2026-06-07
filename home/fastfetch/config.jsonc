@@ -20,7 +20,7 @@
     },
 {
       "type": "host",
-      "format": "{3}",
+      "format": "{2}",
       "key": "host  ",
       "keyColor": "38;2;127;180;202"
     },

@@ -143,13 +143,13 @@ window-rule {
 }
 
 window-rule {
-    match app-id="GitHub Desktop"
-    open-on-workspace "dev"
+    match app-id="github-desktop"
+    open-on-workspace ""
 }
 
 window-rule {
     match app-id="DBeaver"
-    open-on-workspace "dev"
+    open-on-workspace ""
 }
 
 overview {
