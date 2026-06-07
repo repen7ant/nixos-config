@@ -3,7 +3,7 @@
 {
   imports = [
     ./niri
-    ./noctalia.nix
+    ./quickshell.nix
     ./kitty
     ./fuzzel
     ./yazi

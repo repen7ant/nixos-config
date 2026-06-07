@@ -38,7 +38,7 @@ Remove = delete the line + rebuild. No orphaned deps — GC cleans them.
 Versions are frozen in `flake.lock`. Update explicitly:
 
 ```bash
-nix flake update                  # all inputs (nixpkgs, niri, noctalia, ...)
+nix flake update                  # all inputs (nixpkgs, niri, ...)
 nix flake update nixpkgs          # just nixpkgs
 git add -A
 sudo nixos-rebuild switch --flake .#thinkpad

@@ -1,7 +1,7 @@
 # nixos-config
 
 Personal NixOS configuration: **niri** (scrollable-tiling Wayland compositor) +
-**noctalia** shell, managed with flakes and home-manager.
+a custom **quickshell** bar/shell, managed with flakes and home-manager.
 
 - Username: `ilya`
 - Hostname: `nixos` (same on all machines)
@@ -84,13 +84,12 @@ nix-shell -p git --run 'git add -A'
 
 ```bash
 nixos-install --root /mnt --flake /mnt/home/ilya/git/nixos-config#thinkpad \
-  --option extra-substituters "https://niri.cachix.org https://noctalia.cachix.org" \
-  --option extra-trusted-public-keys "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964= noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+  --option extra-substituters "https://niri.cachix.org" \
+  --option extra-trusted-public-keys "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
 ```
 
-The `--option` flags add the niri/noctalia binary caches so niri-unstable and
-noctalia are downloaded, not compiled. (After first boot these come from the
-config automatically.)
+The `--option` flags add the niri binary cache so niri-unstable is downloaded,
+not compiled. (After first boot this comes from the config automatically.)
 
 Set the user password when prompted (or `nixos-enter` then `passwd ilya`).
 
@@ -101,7 +100,7 @@ reboot
 ```
 
 Remove the ISO. GRUB → boot → **ly** login → log in as `ilya` →
-niri starts → noctalia bar appears.
+niri starts → quickshell bar appears.
 
 ---
 

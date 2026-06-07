@@ -1,5 +1,5 @@
 {
-  description = "NixOS config (niri + noctalia)";
+  description = "NixOS config (niri + quickshell)";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -10,8 +10,6 @@
     };
 
     niri.url = "github:sodiboo/niri-flake";
-
-    noctalia.url = "github:noctalia-dev/noctalia-shell";
   };
 
   outputs = { nixpkgs, home-manager, ... }@inputs:

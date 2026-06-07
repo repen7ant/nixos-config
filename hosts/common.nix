@@ -20,11 +20,9 @@
     experimental-features = [ "nix-command" "flakes" ];
     extra-substituters = [
       "https://niri.cachix.org"
-      "https://noctalia.cachix.org"
     ];
     extra-trusted-public-keys = [
       "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
-      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
     ];
     auto-optimise-store = true;
   };
@@ -75,7 +73,7 @@
     pulse.enable = true;
   };
 
-  # --- Services noctalia relies on ---
+  # --- Services the quickshell bar relies on ---
   services.upower.enable = true;
   services.power-profiles-daemon.enable = true;
 
