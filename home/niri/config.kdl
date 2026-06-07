@@ -65,10 +65,15 @@ output "DP-1" {
     scale 1.0
 }
 
+spawn-at-startup "systemctl" "--user" "import-environment" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
+spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP=niri"
+spawn-at-startup "systemctl" "--user" "start" "graphical-session.target"
+spawn-sh-at-startup "qs -c ~/.config/quickshell/bar/"
 spawn-at-startup "waypaper" "--restore"
-spawn-at-startup "qs" "-c" "bar"
 
 environment {
+    GTK_THEME "Adwaita:dark"
+    ADW_DEBUG_COLOR_SCHEME "prefer-dark"
     XCURSOR_THEME "Bibata-Modern-Classic"
     XCURSOR_SIZE "20"
     GTK_CURSOR_THEME "Bibata-Modern-Classic"
@@ -123,11 +128,29 @@ window-rule {
     open-floating true
 }
 
+workspace ""
+workspace "󰖟"
+workspace ""
+
 window-rule {
-     geometry-corner-radius 12
-     clip-to-geometry true
+    match app-id="helium"
+    open-on-workspace "󰖟"
 }
 
+window-rule {
+    match app-id="librewolf"
+    open-on-workspace "󰖟"
+}
+
+window-rule {
+    match app-id="GitHub Desktop"
+    open-on-workspace "dev"
+}
+
+window-rule {
+    match app-id="DBeaver"
+    open-on-workspace "dev"
+}
 
 overview {
     backdrop-color "#1F1F28"
@@ -141,7 +164,7 @@ binds {
     Super+E hotkey-overlay-title="Run a file manager: yazi"{ spawn "kitty" "-e" "yazi"; }
     Mod+Shift+W hotkey-overlay-title="Change wallpaper" { spawn "waypaper"; }
 
-    Super+Ctrl+L hotkey-overlay-title="Lock the Screen" { spawn-sh "qs -c bar ipc call lock lock"; }
+    Super+Ctrl+L hotkey-overlay-title="Lock the Screen" { spawn-sh "qs -c ~/.config/quickshell/bar ipc call lock lock"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
@@ -153,8 +176,8 @@ binds {
     XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
     XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
 
-    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
+    XF86MonBrightnessUp allow-when-locked=true { spawn-sh "qs -c ~/.config/quickshell/bar ipc call brightness up"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn-sh "qs -c ~/.config/quickshell/bar ipc call brightness down"; }
 
     Mod+O repeat=false { toggle-overview; }
 

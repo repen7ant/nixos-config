@@ -27,6 +27,7 @@
     bibata-cursors
     yazi
     btop
+    xdg-utils
 
     # --- applications ---
     claude-code # proprietary garbage
