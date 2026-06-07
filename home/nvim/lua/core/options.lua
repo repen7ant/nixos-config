@@ -14,3 +14,18 @@ vim.o.softtabstop = 4
 vim.o.expandtab = true
 vim.o.pumheight = 10
 vim.o.cmdheight = 1
+
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = '■',
+    source = 'if_many',
+  },
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+  float = {
+    border = 'rounded',
+    source = true,
+  },
+})
