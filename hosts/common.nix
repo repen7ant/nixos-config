@@ -1,4 +1,4 @@
-{ inputs, user, dotfiles, pkgs, ... }:
+{ inputs, user, dotfiles, pkgs, lib, configName, ... }:
 
 {
   imports = [
@@ -75,7 +75,8 @@
 
   # --- Services the quickshell bar relies on ---
   services.upower.enable = true;
-  services.power-profiles-daemon.enable = true;
+  services.power-profiles-daemon.enable = configName != "desktop";
+  powerManagement.cpuFreqGovernor = lib.mkIf (configName == "desktop") "performance";
 
   # --- Compositor ---
   programs.niri.enable = true;
