@@ -128,9 +128,9 @@ window-rule {
     open-floating true
 }
 
-workspace ""
+workspace ""
 workspace "󰖟"
-workspace ""
+workspace ""
 
 window-rule {
     match app-id="helium"
