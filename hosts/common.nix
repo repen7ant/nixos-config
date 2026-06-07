@@ -29,11 +29,11 @@
   niri-flake.cache.enable = false;
 
   nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (pkgs.lib.getName pkg) [
+    let name = lib.getName pkg;
+    in builtins.elem name [
       "discord"
       "claude-code"
-      "nvidia-x11"
-    ];
+    ] || lib.hasPrefix "nvidia" name;
 
   nix.gc = {
     automatic = true;
