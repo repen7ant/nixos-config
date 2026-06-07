@@ -4,8 +4,8 @@ Personal NixOS configuration: **niri** (scrollable-tiling Wayland compositor) +
 a custom **quickshell** bar/shell, managed with flakes and home-manager.
 
 - Username: `ilya`
-- Hostname: `nixos` (same on all machines)
-- Flake outputs: `thinkpad` (active), `desktop` (commented until PC hardware exists)
+- Hostname: `nixos`
+- Flake outputs: `thinkpad`, `desktop`
 - Bootloader: **GRUB (UEFI)**
 - **Load-bearing repo path:** the repo MUST live at `/home/ilya/git/nixos-config`.
   Dotfiles are live-symlinked from there (`mkOutOfStoreSymlink`) and `nh` uses it.
@@ -65,11 +65,6 @@ nix-shell -p git --run \
 cp /mnt/etc/nixos/hardware-configuration.nix \
    /mnt/home/ilya/git/nixos-config/hosts/thinkpad/hardware-configuration.nix
 ```
-
-> For a **new host** (e.g. the desktop PC) instead of thinkpad: create
-> `hosts/desktop/`, put the generated hardware file there, add desktop-specific
-> options (e.g. NVIDIA — see below), and uncomment `desktop = mkHost "desktop";`
-> in `flake.nix`. Then use `.#desktop` everywhere below.
 
 ### 3. Make the files visible to the flake
 
@@ -137,27 +132,6 @@ sudo nixos-rebuild switch --flake .#thinkpad
 ```
 
 `nh` is also available: `nh os switch -H thinkpad`.
-
----
-
-## NVIDIA (desktop PC only)
-
-The desktop has an RTX GPU. Put this in `hosts/desktop/` (NOT common.nix — the
-laptop has no NVIDIA). niri on Wayland needs modesetting:
-
-```nix
-hardware.graphics.enable = true;
-services.xserver.videoDrivers = [ "nvidia" ];
-hardware.nvidia = {
-  modesetting.enable = true;     # required for Wayland
-  open = true;                   # RTX (Turing+) -> open kernel modules
-  nvidiaSettings = true;
-  package = config.boot.kernelPackages.nvidiaPackages.stable;
-};
-```
-
-If the NVIDIA module fails to build against the zen kernel, fall back to
-`boot.kernelPackages = pkgs.linuxPackages` (or `_lts`) on the desktop host.
 
 ---
 
