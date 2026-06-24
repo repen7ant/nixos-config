@@ -10,7 +10,6 @@ return {
 
     local sources = {
       diagnostics.checkmake,
-      require 'none-ls.diagnostics.eslint_d',
       formatting.prettierd.with { filetypes = { 'html', 'json', 'yaml', 'markdown' } },
       formatting.stylua,
       formatting.shfmt.with { args = { '-i', '4' } },

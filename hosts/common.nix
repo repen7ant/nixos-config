@@ -32,6 +32,7 @@
     let name = lib.getName pkg;
     in builtins.elem name [
       "claude-code"
+      "intelephense"
     ] || lib.hasPrefix "nvidia" name;
 
   nix.gc = {
@@ -48,6 +49,9 @@
   # --- Networking ---
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
+  networking.hosts = {
+    "127.0.0.1" = [ "reflectboard.local" "reflectboard-api.local" ];
+  };
 
   # --- SSH ---
   services.openssh = {
