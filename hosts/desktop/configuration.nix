@@ -19,5 +19,7 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
+  environment.sessionVariables.GSK_RENDERER = "gl";
+
   system.stateVersion = "25.05";
 }

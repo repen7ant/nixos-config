@@ -1,6 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, configName, ... }:
 
 let
+  # nvidia + Wayland breaks the GPU/GBM backend of Chromium/Electron apps
+  # (helium's screen share): the renderer needs the real GL/GBM/EGL driver
+  # paths. Only used on the nvidia host; other hosts run helium unwrapped.
   heliumWrapped = pkgs.symlinkJoin {
     name = "helium-screenshare-fix";
     paths = [ pkgs.helium ];
@@ -25,6 +28,11 @@ in
     unzip
     fd
     wl-clipboard
+    jmtpfs
+    shntool
+    cuetools
+    flac
+    ffmpeg
 
     # --- shell ---
     starship
@@ -53,8 +61,10 @@ in
     dbeaver-bin
     feishin
     calibre
+    picard
+    gimp
 
-    heliumWrapped
+    (if configName == "desktop" then heliumWrapped else helium)
     tor-browser
     telegram-desktop
     qbittorrent
